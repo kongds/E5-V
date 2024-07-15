@@ -1,0 +1,11 @@
+transformers==4.41.2
+deepspeed==0.11.1
+peft==0.11.1
+accelerate==0.27.2
+bitsandbytes==0.43.1
+scipy
+datasets==2.20.0
+safetensors==0.4.3
+pandas==1.1.5
+scikit-learn
+prettytable
