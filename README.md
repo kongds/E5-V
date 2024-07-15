@@ -1,5 +1,10 @@
 # E5-V: Universal Embeddings with Multimodal Large Language Models
 
+## Overview
+We propose a framework, called E5-V, to adpat MLLMs for achieving multimodal embeddings. E5-V effectively bridges the modality gap between different types of inputs, demonstrating strong performance in multimodal embeddings even without fine-tuning. We also propose a single modality training approach for E5-V, where the model is trained exclusively on text pairs, demonstrating better performance than multimodal training.
+
+![](figure/e5v.png)
+
 ## Example
 ``` python
 import torch
