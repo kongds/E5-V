@@ -37,3 +37,5 @@ sd['image_newline'] = sd['language_model.model.image_newline']
 del sd['language_model.model.image_newline']
 model.load_state_dict(sd)
 model.save_pretrained('models/llava-llama-3-8b')
+# save language model for training
+model.language_model.save_pretrained('models/llava-llama-3-8b-llm')

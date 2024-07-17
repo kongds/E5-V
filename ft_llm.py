@@ -335,7 +335,6 @@ def train(
         fix_attention_mask: bool = False,
         set_pad_to_unk: bool = False,
         bf16: bool = False,
-        not_save_fp32: bool = False,
         not_eol: bool = False,
         org_attn: bool = False,
 ):
@@ -382,25 +381,15 @@ def train(
         accelerator = Accelerator()
         #device = accelerator.device
         with accelerator.main_process_first():
-            base_llm_model = base_model.replace('/', '-') + '-llm'
+            base_llm_model = base_model.split('/')[-1] + '-llm'
             base_llm_model = os.path.join('models', base_llm_model)
-            if not_save_fp32:
-                base_llm_model += '-fp16'
             base_llm_model = base_llm_model.strip('-')
             if not os.path.exists(base_llm_model):
                 from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration
-                if not_save_fp32:
-                    LlavaNextForConditionalGeneration.from_pretrained(
-                        base_model,
-                        torch_dtype=torch.bfloat16 if bf16 else torch.float16,
-                        device_map='cpu',
-                    ).language_model.save_pretrained(base_llm_model)
-                else:
-                    LlavaNextForConditionalGeneration.from_pretrained(
-                        base_model,
-                        device_map='cpu',
-                    ).language_model.save_pretrained(base_llm_model)
-            print(base_llm_model)
+                LlavaNextForConditionalGeneration.from_pretrained(
+                    base_model,
+                    device_map='cpu',
+                ).language_model.save_pretrained(base_llm_model)
 
         if load_kbit == 4:
             assert load_kbit == 4

@@ -74,7 +74,7 @@ bash download_nli.sh
 cd -
 ```
 
-3. Transfer llava-llama-3-8b model to huggingface format
+3. Transfer llava-llama-3-8b model to huggingface format on each nodes
 
 ``` sh
 mkdir -p models
