@@ -178,7 +178,8 @@ def init_model_and_transform(lora_path, bf16, fp32, use_e5v=False):
         return model, transform
     else:
         MODEL_CLASS = LlavaNextForConditionalGeneration
-        transform = LlavaNextProcessor.from_pretrained("llava-hf/llava-v1.6-mistral-7b-hf")
+        transform = LlavaNextProcessor.from_pretrained("llava-hf/llava-v1.6-mistral-7b-hf",
+                                                       revision='a1d521368f8d353afa4da2ed2bb1bf646ef1ff5f')
         if MODEL_TYPE == 'llava_llama3':
             tokenizer = AutoTokenizer.from_pretrained("unsloth/llama-3-8b-Instruct")
             transform.tokenizer = tokenizer

@@ -121,7 +121,8 @@ def main():
         tokenizer.padding = True
     elif 'llava' in args.model_name_or_path:
         from transformers import LlavaNextProcessor
-        transform = LlavaNextProcessor.from_pretrained("llava-hf/llava-v1.6-mistral-7b-hf")
+        transform = LlavaNextProcessor.from_pretrained("llava-hf/llava-v1.6-mistral-7b-hf",
+                                                       revision='a1d521368f8d353afa4da2ed2bb1bf646ef1ff5f')
         tokenizer = transform.tokenizer
         tokenizer.padding = True
     else:
